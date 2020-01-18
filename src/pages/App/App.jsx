@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import HomePage from "../../pages/HomePage/HomePage";
+import HomePage from "../HomePage/HomePage";
 
 class App extends Component {
   constructor() {
