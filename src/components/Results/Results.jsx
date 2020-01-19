@@ -11,7 +11,7 @@ const Results = props => {
             <strong>{props.responseObj.results.picture}</strong>
           </p>
           <p>
-            {console.log("RESULTS", props.responseObj)}
+            {console.log("RESULTS", props)}
             {props.responseObj.results[0].name}{" "}
             {props.responseObj.results[0].name.locations.display_name}{" "}
             {props.responseObj.results.name.locations.url}
