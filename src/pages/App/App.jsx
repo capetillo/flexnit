@@ -4,6 +4,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
+import Movies from "../../components/Movies/Movies";
 
 class App extends Component {
   constructor() {
@@ -26,6 +27,9 @@ class App extends Component {
     return (
       <div>
         <header className="header-footer">F L E X N I T</header>
+        <main>
+          <Movies />
+        </main>
         <Switch>
           <Route
             exact
