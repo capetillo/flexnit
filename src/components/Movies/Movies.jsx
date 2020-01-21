@@ -25,7 +25,7 @@ class Movies extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    console.log("a title was submitted" + this.state.title);
+    console.log("a title was submitted " + this.state.title);
   };
 
   checkStream = () => {
@@ -48,7 +48,7 @@ class Movies extends Component {
         } else {
           this.setState({
             available:
-              "Bummer, this isn't currently available on any streaming platform."
+              "Womp womp, this isn't currently available on any streaming platform."
           });
         }
       });
@@ -137,8 +137,8 @@ class Movies extends Component {
   //   }
   // }
   render() {
-    const { classes } = this.props;
-    const stream = this.props.stream;
+    // const { classes } = this.props;
+    // const stream = this.props.stream;
     const CheckStreamingButton = () => (
       <button onClick={this.checkStream}> Can I Stream This? </button>
     );
@@ -155,12 +155,10 @@ class Movies extends Component {
                 title="title"
                 onChange={this.handleChange}
               />
-              {stream ? <CheckStreamingButton /> : <p>NOPE</p>}
-              <p className={classes.streaming}>{this.state.available}</p>
+              <CheckStreamingButton />
+              <p>{this.state.available}</p>
               {this.state.streaming.map(service => (
-                <p key={service} className={classes.streaming}>
-                  {service}
-                </p>
+                <p key={service}>{service}</p>
               ))}
             </div>
           </div>
