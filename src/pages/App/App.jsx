@@ -4,7 +4,6 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
-import Movies from "../../components/Movies/Movies";
 import { getAllMovies } from "../../services/movies-api";
 
 class App extends Component {
@@ -12,7 +11,7 @@ class App extends Component {
     super();
     this.state = {
       user: userService.getUser(),
-      movies: []
+      movies: ""
     };
   }
 
@@ -22,9 +21,9 @@ class App extends Component {
 
   async componentDidMount() {
     const movies = await getAllMovies();
-    console.log("this is a movie", movies);
     this.setState({ movies: movies });
   }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -38,11 +37,13 @@ class App extends Component {
     return (
       <div>
         <header className="header-footer">F L E X N I T</header>
-        <main>
-          {this.state.movies.map(movie => (
-            <p key={movie.movie}> {movie.movie}</p>
-          ))}
-        </main>
+        {
+          // <main>
+          //   {this.state.movies.map(movie => (
+          //     <p key={movie.movie}> {movie.movie}</p>
+          //   ))}
+          // </main>
+        }
         <Switch>
           <Route
             exact
@@ -64,7 +65,6 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/movies" render={() => <Movies />} />
           <Route
             exact
             path="/login"

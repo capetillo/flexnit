@@ -11,7 +11,7 @@ export function getAllMovies() {
     }
   )
     .then(response => {
-      console.log(response);
+      console.log("RESPONSE HEADERS", response.json());
     })
     .catch(err => {
       console.log(err);

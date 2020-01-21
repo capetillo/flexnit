@@ -1,84 +1,173 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import Results from "../Results/Results";
+import API from "../../utils/movieService";
 
-const Movies = () => {
-  let [term, setTerm] = useState("");
-  let [country, setCountry] = useState("");
-  let [responseObj, setResponseObj] = useState({});
-  let [error, setError] = useState(false);
-  let [loading, setLoading] = useState(false);
+class Movies extends Component {
+  state = {
+    title: "",
+    streaming: [],
+    available: ""
+  };
 
-  function getMovies(e) {
+  searchMovie = title => {
+    this.setState({ title: title });
+  };
+
+  handleChange = e => {
+    this.searchMovie();
+    console.log("TARGET VALUE" + e.target.value);
+    this.setState({
+      // Using ES2015 Computed Property Names
+
+      [e.target.title]: e.target.value
+    });
+  };
+
+  handleSubmit = async e => {
     e.preventDefault();
+    console.log("a title was submitted" + this.state.title);
+  };
 
-    if (term.length === 0) {
-      return setError(true);
-    }
-
-    // Clear state in preparation for new data
-    setError(false);
-    setResponseObj({});
-
-    setLoading(true);
-
-    const uriEncodedTerm = encodeURIComponent(term);
-    const uriEncodedCountry = encodeURIComponent(country);
-
-    fetch(
-      `https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${uriEncodedTerm}&country=${uriEncodedCountry}`,
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host":
-            "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-          "x-rapidapi-key": process.env.REACT_APP_API_KEY
-        }
-      }
-    )
-      .then(response => response.json())
+  checkStream = () => {
+    console.log("check stream");
+    let tempArray = [];
+    API.checkStream(this.props.title)
       .then(response => {
-        if (response.status_code !== 200) {
-          throw new Error();
+        console.log(response);
+        console.log(response.data);
+        if (response.data.length > 0) {
+          for (let i = 0; i < response.data[0].locations.length; i++) {
+            console.log(response.data[0].locations[i].display_name);
+            tempArray.push(response.data[0].locations[i].display_name);
+          }
         }
-
-        setResponseObj(response);
-        setLoading(false);
       })
-      .catch(err => {
-        setError(true);
-        setLoading(false);
-        console.log(err.message);
+      .then(() => {
+        if (tempArray.length > 0) {
+          this.setState({ streaming: tempArray, available: "Available On: " });
+        } else {
+          this.setState({
+            available:
+              "Bummer, this isn't currently available on any streaming platform."
+          });
+        }
       });
-  }
+  };
+  // const Movies = () => {
+  //     let [term, setTerm] = useState("");
+  //     let [country, setCountry] = useState("");
+  //     let [responseObj, setResponseObj] = useState({});
+  //     let [error, setError] = useState(false);
+  //     let [loading, setLoading] = useState(false);
+  //   getMovies = e => {
+  //     e.preventDefault();
 
-  return (
-    <div>
-      <h2>Find a movie idk</h2>
+  //     if (term.length === 0) {
+  //       return setError(true);
+  //     }
+
+  //     //     // Clear state in preparation for new data
+  //     setError(false);
+  //     setResponseObj({});
+
+  //     setLoading(true);
+
+  //     const uriEncodedTerm = encodeURIComponent(term);
+  //     const uriEncodedCountry = encodeURIComponent(country);
+
+  //     fetch(
+  //       `https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${uriEncodedTerm}&country=${uriEncodedCountry}`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "x-rapidapi-host":
+  //             "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+  //           "x-rapidapi-key": process.env.REACT_APP_API_KEY
+  //         }
+  //       }
+  //     )
+  //       .then(response => response.json())
+  //       .then(response => {
+  //         if (response.status_code !== 200) {
+  //           throw new Error();
+  //         }
+
+  //         setResponseObj(response);
+  //         setLoading(false);
+  //       })
+  //       .catch(err => {
+  //         setError(true);
+  //         setLoading(false);
+  //         console.log(err.message);
+  //       });
+  //   };
+  //   render() {
+  //     return (
+  //       <div>
+  //         <h2>Find a movie idk</h2>
+  //         <div>
+  //           <form onSubmit={getMovies}>
+  //             <input
+  //               type="text"
+  //               placeholder="Search movie"
+  //               maxLength="50"
+  //               value={term}
+  //               onChange={e => setTerm(e.target.value)}
+  //             />
+  //             <button type="submit">Search Movie</button>
+  //             <Results
+  //               responseObj={responseObj}
+  //               error={error}
+  //               loading={loading}
+  //             />
+  //             <h2>Where are you tho</h2>
+  //             <input
+  //               type="text"
+  //               placeholder="Where"
+  //               maxLength="50"
+  //               value={country}
+  //               onChange={e => setCountry(e.target.value)}
+  //             />
+  //             <button type="submit">Search Movie</button>
+  //           </form>
+  //           <Results responseObj={responseObj} error={error} loading={loading} />
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  // }
+  render() {
+    const { classes } = this.props;
+    const stream = this.props.stream;
+    const CheckStreamingButton = () => (
+      <button onClick={this.checkStream}> Can I Stream This? </button>
+    );
+    return (
       <div>
-        <form onSubmit={getMovies}>
-          <input
-            type="text"
-            placeholder="Search movie"
-            maxLength="50"
-            value={term}
-            onChange={e => setTerm(e.target.value)}
-          />
-          <button type="submit">Search Movie</button>
-          <Results responseObj={responseObj} error={error} loading={loading} />
-          <h2>Where tho</h2>
-          <input
-            type="text"
-            placeholder="Where"
-            maxLength="50"
-            value={country}
-            onChange={e => setCountry(e.target.value)}
-          />
-          <button type="submit">Search Movie</button>
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <div className="col-sm-12">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Title"
+                value={this.state.title}
+                title="title"
+                onChange={this.handleChange}
+              />
+              {stream ? <CheckStreamingButton /> : <p>NOPE</p>}
+              <p className={classes.streaming}>{this.state.available}</p>
+              {this.state.streaming.map(service => (
+                <p key={service} className={classes.streaming}>
+                  {service}
+                </p>
+              ))}
+            </div>
+          </div>
         </form>
-        <Results responseObj={responseObj} error={error} loading={loading} />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Movies;
