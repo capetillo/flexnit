@@ -1,12 +1,14 @@
 import React, { useState, Component } from "react";
 import Results from "../Results/Results";
-import API from "../../utils/movieService";
+import movieService from "../../utils/movieService";
 
 class Movies extends Component {
   state = {
     title: "",
     streaming: [],
-    available: ""
+    available: "",
+    searchArr: [],
+    searchRedirect: false
   };
 
   searchMovie = title => {
@@ -28,10 +30,25 @@ class Movies extends Component {
     console.log("a title was submitted " + this.state.title);
   };
 
+  //   handleFormSubmit = e => {
+  //     e.preventDefault();
+  //     movieService
+  //       .getSearch(this.state.search)
+  //       .then(res => {
+  //         console.log(res);
+  //         return res;
+  //       })
+  //       .then(res => this.setState({ searchArr: res.data }))
+  //       .then(this.setState({ searchRedirect: true }))
+  //       .catch(err => console.log(err));
+  //   };
+
   checkStream = () => {
     console.log("check stream");
     let tempArray = [];
-    API.checkStream(this.props.title)
+    console.log("made it this far");
+    movieService
+      .checkStream(this.state.title)
       .then(response => {
         console.log(response);
         console.log(response.data);

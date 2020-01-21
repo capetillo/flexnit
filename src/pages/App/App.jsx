@@ -5,13 +5,15 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
 import { getAllMovies } from "../../services/movies-api";
+import SearchPage from "../../pages/SearchPage/SearchPage";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      movies: ""
+      movies: "",
+      searchArr: []
     };
   }
 
@@ -74,6 +76,11 @@ class App extends Component {
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
             )}
+          />
+          <Route
+            exact
+            path="/search"
+            render={() => <SearchPage movies={this.state.searchArr} />}
           />
         </Switch>
       </div>
