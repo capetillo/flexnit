@@ -20,8 +20,10 @@ class App extends Component {
     return this.state.movies[idx];
   };
 
-  componentDidMount() {
-    //code goes here
+  async componentDidMount() {
+    const movies = await getAllMovies();
+    console.log("this is a movie", movies);
+    this.setState({ movies: movies });
   }
   handleLogout = () => {
     userService.logout();
