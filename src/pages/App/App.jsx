@@ -5,15 +5,24 @@ import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
 import Movies from "../../components/Movies/Movies";
+import { getAllMovies } from "../../services/movies-api";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser()
+      user: userService.getUser(),
+      movies: []
     };
   }
 
+  getMovie = idx => {
+    return this.state.movies[idx];
+  };
+
+  componentDidMount() {
+    //code goes here
+  }
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
@@ -28,7 +37,9 @@ class App extends Component {
       <div>
         <header className="header-footer">F L E X N I T</header>
         <main>
-          <Movies />
+          {this.state.movies.map(movie => (
+            <p key={movie.movie}> {movie.movie}</p>
+          ))}
         </main>
         <Switch>
           <Route
@@ -51,6 +62,7 @@ class App extends Component {
               />
             )}
           />
+          <Route exact path="/movies" render={() => <Movies />} />
           <Route
             exact
             path="/login"

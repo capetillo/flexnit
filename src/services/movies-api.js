@@ -1,8 +1,19 @@
-const REQUEST_URL =
-  " https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup;";
-
 export function getAllMovies() {
-  return fetch(`${REQUEST_URL}movies`, { mode: "cors" }).then(res =>
-    res.json()
-  );
+  return fetch(
+    "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup",
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host":
+          "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY
+      }
+    }
+  )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
