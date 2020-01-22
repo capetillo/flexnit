@@ -9,7 +9,7 @@ module.exports = {
   getAllMovies
 };
 
-function getAllMovies(req, res) {
+getAllMovies = (req, res) => {
   const options = {
     url: `${BASE_URL}`,
     headers: {
@@ -22,4 +22,4 @@ function getAllMovies(req, res) {
     let data = JSON.parse(body);
     console.log("this is the data", data);
   });
-}
+};

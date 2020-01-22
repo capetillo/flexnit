@@ -20,7 +20,7 @@ class Search extends Component {
         ))}
         <Results />
         {/* ))}
-              key={movie.id} src={movie.poster_path} alt={movie.title} title= {movie.title} overview={movie.overview}
+              key={movie.id} src={movie.poster_path} alt={movie.title} title= {movie.title} summary={movie.summary}
            id={movie.id} userName= {user.displayName} user_id={user.uid} icon={true} stream={true} */}
       </div>
     );

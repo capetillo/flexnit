@@ -1,23 +1,25 @@
 import axios from "axios";
 
 export default {
-  checkStream: input => {
-    let title = input.replace(/\s/g, "+").toLowerCase();
-    console.log(title);
-    return axios.get("api/movies/" + title);
-  }
-  //getSearch
+  checkStream,
+  addToList,
+  deleteFromList,
+  displayList
 };
 
-// function checkStream(input) {
-//   let title = input.replace(/\s/g, "+").toLowerCase();
-//   console.log(title);
-//   return axios.get("api/movies/" + title);
-// }
+function checkStream(input) {
+  let title = input.replace(/\s/g, "+").toLowerCase();
+  return axios.get("api/movies/" + title);
+}
 
-// getSearch = query => {
-//   let search = query.replace(/\s/g, "+").toLowerCase();
-//   console.log(search);
+function addToList(user, movie) {
+  return axios.post("api/watchlists/" + user, movie);
+}
 
-//   return axios.get("/api/movies/" + search);
-// };
+function deleteFromList(user, movie) {
+  return axios.put("api/watchlists/" + user, movie);
+}
+
+function displayList(user) {
+  return axios.get("api/watchlists/" + user);
+}

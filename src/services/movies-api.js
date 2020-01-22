@@ -1,6 +1,6 @@
-export function getAllMovies() {
+export function getAllMovies(title) {
   return fetch(
-    "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup",
+    `https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${title}&country=us`,
     {
       method: "GET",
       headers: {

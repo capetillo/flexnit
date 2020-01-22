@@ -1,24 +1,38 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
 import { getAllMovies } from "../../services/movies-api";
 import SearchPage from "../../pages/SearchPage/SearchPage";
+import WatchListPage from "../WatchListPage/WatchListPage";
+import movieService from "../../utils/movieService";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      movies: "",
+      moviesArr: [],
       searchArr: []
     };
   }
+  //CHECK LATER
+  updateWatchlist = () => {
+    console.log("made it to updatewatchlist");
+    movieService
+      .displayList(this.user.id)
+      .then(res => {
+        console.log(res);
+        return res;
+      })
+      .then(res => this.setState({ moviesArr: res.data.favorite }))
+      .catch(err => console.log(err));
+  };
 
   getMovie = idx => {
-    return this.state.movies[idx];
+    return this.state.moviesArr[idx];
   };
 
   async componentDidMount() {
@@ -82,6 +96,24 @@ class App extends Component {
             path="/search"
             render={() => <SearchPage movies={this.state.searchArr} />}
           />
+          <div>
+            {console.log(this.state.movies)}
+            {this.state.moviesArr.map(movie => (
+              <Route
+                exact
+                path="/watchlist"
+                render={() => (
+                  <WatchListPage
+                    title={movie.title}
+                    summary={movie.summary}
+                    id={movie.movie_id}
+                    user_id={this.state.user.id}
+                    updateWatchlist={() => this.updateWatchlist()}
+                  />
+                )}
+              />
+            ))}
+          </div>
         </Switch>
       </div>
     );

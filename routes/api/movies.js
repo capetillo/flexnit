@@ -1,6 +1,6 @@
-const express = require("express");
-const axios = require("axios");
-const router = express.Router();
+var express = require("express");
+var axios = require("axios");
+var router = express.Router();
 //const moviesCtrl = require("../../controllers/movies");
 const URL =
   "https://utelly-tv-shows-and-movies-availability-v1.p.mashape.com/lookup?&country=us&term=";
