@@ -20,26 +20,45 @@ function addMovie(req, res) {
 
 function removeMovie(req, res) {
   User.findById(req.params.user, function(err, user) {
-    user.watchlist.pull(req.body);
+    let newWatchlist = user.watchlist.filter(movie => {
+      return movie.name !== req.params.title;
+    });
+    user.watchlist = newWatchlist;
     user.save(function(err) {
       if (err) console.log(err);
-      res.send({ message: "Movie removed" });
+      res.send({ message: "deleted" });
     });
   });
-  // Watchlist.findOne(req.body)
-  //   .then(function(Watchlist) {
-  //     return User.findOneAndUpdate(
-  //       { user_id: req.params.user },
-  //       { $pull: { favorite: Watchlist._id } }
-  //     );
-  //   })
-  //   .then(function(User) {
-  //     res.json(User);
-  //   })
-  //   .catch(function(err) {
-  //     res.json(err);
-  //   });
 }
+// function removeMovie(req, res) {
+//   var newWatchlist = user.watchlist.filter(movie => {
+//     return movie.name !== req.params.title;
+//   });
+//   User.findByIdAndUpdate(
+//     req.params.user_id,
+//     newWatchlist,
+//     { new: true },
+//     function(err, user) {
+//       user.save(function(err) {
+//         if (err) console.log(err);
+//         res.send({ message: "Movie removed" });
+//       });
+//     }
+//   );
+// }
+// Watchlist.findOne(req.body)
+//   .then(function(Watchlist) {
+//     return User.findOneAndUpdate(
+//       { user_id: req.params.user },
+//       { $pull: { favorite: Watchlist._id } }
+//     );
+//   })
+//   .then(function(User) {
+//     res.json(User);
+//   })
+//   .catch(function(err) {
+//     res.json(err);
+//   });
 
 function listWatchlist(req, res) {
   User.findOne({ user_id: req.params.user })

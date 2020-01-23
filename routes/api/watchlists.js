@@ -6,7 +6,7 @@ var watchlistsCtrl = require("../../controllers/watchlists");
 router.use(require("../../config/auth"));
 router.get("/:user", checkAuth, watchlistsCtrl.listWatchlist);
 router.post("/:user", watchlistsCtrl.addMovie);
-router.delete("/:user", watchlistsCtrl.removeMovie);
+router.delete("/:user/:title", watchlistsCtrl.removeMovie);
 
 function checkAuth(req, res, next) {
   if (req.user) return next();

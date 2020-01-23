@@ -17,7 +17,7 @@ function addToList(user, movie) {
 }
 
 function deleteFromList(user, movie) {
-  return axios.delete("api/watchlists/" + user, movie);
+  return axios.delete("api/watchlists/" + user + "/" + movie);
 }
 
 function displayList(user) {

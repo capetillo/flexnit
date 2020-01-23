@@ -138,7 +138,7 @@ class Movies extends Component {
         <button
           onClick={() =>
             movieService
-              .deleteFromList(this.props.user._id, this.state.movie)
+              .deleteFromList(this.props.user._id, this.state.movie.name)
               .then(res => {
                 let newUser = userService.getUser();
                 this.props.handleUpdateUser(newUser);
