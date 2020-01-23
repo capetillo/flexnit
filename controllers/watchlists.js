@@ -20,14 +20,16 @@ function addMovie(req, res) {
 
 function removeMovie(req, res) {
   User.findById(req.params.user, function(err, user) {
+    console.log("USER FOUND ", user);
     let newWatchlist = user.watchlist.filter(movie => {
       return movie.name !== req.params.title;
     });
+    console.log("NEW WATCHLIST ", newWatchlist);
     user.watchlist = newWatchlist;
-    user.save(function(err) {
-      console.log(req.body);
+    user.save(function(err, user) {
+      console.log("NEW NEW USER ", user);
       if (err) console.log(err);
-      res.send({ message: "deleted" });
+      res.json(user);
     });
   });
 }

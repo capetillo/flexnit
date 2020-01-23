@@ -140,10 +140,12 @@ class Movies extends Component {
             movieService
               .deleteFromList(this.props.user._id, this.state.movie.name)
               .then(res => {
-                let newUser = userService.getUser();
-                console.log("new user = ", newUser);
+                console.log("RESSSS ", res);
+                let newUser = res.data;
+                // newUser.watchlist = [...newUser.watchlist];
                 this.props.handleUpdateUser(newUser);
-                console.log("newer user is ", newUser);
+                console.log("new user deleted idk", newUser);
+
                 // let oldUser = this.props.user;
                 // oldUser
               })
