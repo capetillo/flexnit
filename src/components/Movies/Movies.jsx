@@ -1,8 +1,9 @@
 import React, { useState, Component } from "react";
 import Results from "../Results/Results";
 import movieService from "../../utils/movieService";
-//import SaveButton from "../SaveButton/SaveButton";
+//import SaveButton from "../SaveButton/SaveButton"
 import "./Movies.css";
+import userService from "../../utils/userService";
 
 class Movies extends Component {
   state = {
@@ -75,6 +76,27 @@ class Movies extends Component {
     const CheckStreamingButton = () => (
       <button onClick={this.checkStream}> Search </button>
     );
+
+    // const nav = !this.state.streaming.includes(this.state.movie) ? (
+    //   <button
+    //     onClick={() =>
+    //       movieService.addToList(this.props.user._id, this.state.movie)
+    //     }
+    //   >
+    //     {" "}
+    //     +{" "}
+    //   </button>
+    // ) : (
+    //   <button
+    //     onClick={() =>
+    //       movieService.deleteFromList(this.props.user._id, this.state.movie)
+    //     }
+    //   >
+    //     {" "}
+    //     -{" "}
+    //   </button>
+    // );
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -97,14 +119,36 @@ class Movies extends Component {
             <img src={this.state.imgArr} className="img" />
           </div>
         </form>
-
         <button
           onClick={() =>
-            movieService.addToList(this.props.user._id, this.state.movie)
+            movieService
+              .addToList(this.props.user._id, this.state.movie)
+              .then(res => {
+                let newUser = this.props.user;
+                newUser.watchlist = [...newUser.watchlist, res.data.message];
+                console.log(newUser);
+                this.props.handleUpdateUser(newUser);
+              })
           }
         >
           {" "}
-          Save to watchlist{" "}
+          +{" "}
+        </button>
+
+        <button
+          onClick={() =>
+            movieService
+              .deleteFromList(this.props.user._id, this.state.movie)
+              .then(res => {
+                let newUser = userService.getUser();
+                this.props.handleUpdateUser(newUser);
+                // let oldUser = this.props.user;
+                // oldUser
+              })
+          }
+        >
+          {" "}
+          -{" "}
         </button>
       </div>
     );

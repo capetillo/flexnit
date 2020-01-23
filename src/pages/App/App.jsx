@@ -18,6 +18,7 @@ class App extends Component {
       searchArr: []
     };
   }
+
   //CHECK LATER
   // updateWatchlist = () => {
   //   console.log("made it to updatewatchlist");
@@ -57,17 +58,14 @@ class App extends Component {
     this.setState({ user: userService.getUser() });
   };
 
+  handleUpdateUser = newUser => {
+    this.setState({ user: newUser });
+  };
+
   render() {
     return (
       <div>
         <header className="header-footer">F L E X N I T</header>
-        {
-          // <main>
-          //   {this.state.movies.map(movie => (
-          //     <p key={movie.movie}> {movie.movie}</p>
-          //   ))}
-          // </main>
-        }
         <Switch>
           <Route
             exact
@@ -76,6 +74,7 @@ class App extends Component {
               <HomePage
                 user={this.state.user}
                 handleLogout={this.handleLogout}
+                handleUpdateUser={this.handleUpdateUser}
               />
             )}
           />

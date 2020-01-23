@@ -6,7 +6,11 @@ const HomePage = props => {
   return (
     <div className="HomePage">
       <Nav user={props.user} handleLogout={props.handleLogout} />
-      <Movies user={props.user} movies={props.movies} />
+      <Movies
+        user={props.user}
+        movies={props.movies}
+        handleUpdateUser={props.handleUpdateUser}
+      />
     </div>
   );
 };
