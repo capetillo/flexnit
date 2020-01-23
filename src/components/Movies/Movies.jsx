@@ -1,13 +1,14 @@
 import React, { useState, Component } from "react";
 import Results from "../Results/Results";
 import movieService from "../../utils/movieService";
-//import SaveButton from "./SaveButton/SaveButton";
+//import SaveButton from "../SaveButton/SaveButton";
 import "./Movies.css";
 
 class Movies extends Component {
   state = {
     title: "",
     streaming: [],
+    movie: {},
     imgArr: [],
     available: "",
     searchArr: [],
@@ -35,15 +36,19 @@ class Movies extends Component {
     console.log("check stream");
     let tempArray = [];
     let imgArray = [];
+    let obj = { locations: [] };
     movieService
       .checkStream(this.state.title)
       .then(response => {
         console.log("RESPONSE DATA IS ", response.data);
         if (response.data.length > 0) {
           imgArray.push(response.data[0].picture);
+          obj.picture = response.data[0].picture;
+          obj.name = response.data[0].name;
           console.log("TEMP ARRAY", tempArray);
           for (let i = 0; i < response.data[0].locations.length; i++) {
             tempArray.push(response.data[0].locations[i].display_name);
+            obj.locations.push(response.data[0].locations[i].display_name);
           }
         }
       })
@@ -52,7 +57,8 @@ class Movies extends Component {
           this.setState({
             streaming: tempArray,
             imgArr: imgArray,
-            available: "Available On: "
+            available: "Available On: ",
+            movie: obj
           });
         } else {
           this.setState({
@@ -91,7 +97,15 @@ class Movies extends Component {
             <img src={this.state.imgArr} className="img" />
           </div>
         </form>
-        {/* <SaveButton onClick={this.props.handleDeleteMovie} /> */}
+
+        <button
+          onClick={() =>
+            movieService.addToList(this.props.user._id, this.state.movie)
+          }
+        >
+          {" "}
+          Save to watchlist{" "}
+        </button>
       </div>
     );
   }
