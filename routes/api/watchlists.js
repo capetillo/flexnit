@@ -4,12 +4,13 @@ var router = express.Router();
 var watchlistsCtrl = require("../../controllers/watchlists");
 
 router.use(require("../../config/auth"));
-router.get("/:user", watchlistsCtrl.listWatchlist);
-router.post("/:user", watchlistsCtrl.addMovie);
-router.delete("/:user/:title", watchlistsCtrl.removeMovie);
+router.get("/:user", checkAuth, watchlistsCtrl.listWatchlist);
+router.post("/:user", checkAuth, watchlistsCtrl.addMovie);
+router.delete("/:user/:title", checkAuth, watchlistsCtrl.removeMovie);
 
 function checkAuth(req, res, next) {
-  if (req.user) return next();
+  console.log("REQ USER ", req.params.user);
+  if (req.params.user) return next();
   return res.status(401).json({ msg: "Not Authorized" });
 }
 
