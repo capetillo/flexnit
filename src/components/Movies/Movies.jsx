@@ -1,9 +1,6 @@
-import React, { useState, Component } from "react";
-import Results from "../Results/Results";
+import React, { Component } from "react";
 import movieService from "../../utils/movieService";
-//import SaveButton from "../SaveButton/SaveButton"
 import "./Movies.css";
-import userService from "../../utils/userService";
 
 class Movies extends Component {
   state = {
@@ -12,8 +9,6 @@ class Movies extends Component {
     movie: {},
     imgArr: [],
     available: "",
-    searchArr: [],
-    searchRedirect: false
   };
 
   searchMovie = title => {
@@ -66,7 +61,7 @@ class Movies extends Component {
             imgArr: imgArray,
             streaming: tempArray,
             available:
-              "Womp womp, this isn't currently available on any streaming platform."
+              "This isn't currently available on any streaming platform."
           });
         }
       });
@@ -76,92 +71,15 @@ class Movies extends Component {
     const CheckStreamingButton = () => (
       <button onClick={this.checkStream}> Search </button>
     );
-    // var nav = () => (
-    //   for (let i = 0; i < this.props.user.watchlist.length; i++) {
-    //     var theTitle = this.props.user.watchlist[i].name;
-    //     if (!theTitle.includes(this.state.movie.name)) {
-    //       var plusButton = (
-    //         <button
-    //           onClick={() =>
-    //             movieService
-    //               .addToList(this.props.user._id, this.state.movie)
-    //               .then(res => {
-    //                 let newUser = this.props.user;
-    //                 newUser.watchlist = [
-    //                   ...newUser.watchlist,
-    //                   res.data.message
-    //                 ];
-    //                 console.log(newUser);
-    //                 this.props.handleUpdateUser(newUser);
-    //               })
-    //           }
-    //         >
-    //           {" "}
-    //           +{" "}
-    //         </button>
-    //       );
-    //       return plusButton;
-    //     } else {
-    //       var minusButton = (
-    //         <button
-    //           onClick={() =>
-    //             movieService
-    //               .deleteFromList(this.props.user._id, this.state.movie.name)
-    //               .then(res => {
-    //                 console.log("RESSSS ", res);
-    //                 let newUser = res.data;
-    //                 this.props.handleUpdateUser(newUser);
-    //               })
-    //           }
-    //         >
-    //           {" "}
-    //           -{" "}
-    //         </button>
-    //       );
-    //       return minusButton;
-    //     }
-
-    //   changeButtons();
-    // const nav = !this.props.user.watchlist.includes(this.state.movie) ? (
-    //   <button
-    //     onClick={() =>
-    //       movieService.addToList(this.props.user._id, this.state.movie)
-    //     }
-    //   >
-    //     {" "}
-    //     +{" "}
-    //   </button>
-    // ) : (
-    //   <button
-    //     onClick={() =>
-    //       movieService.deleteFromList(this.props.user._id, this.state.movie)
-    //     }
-    //   >
-    //     {" "}
-    //     -{" "}
-    //   </button>
-    // );
-
-    var x = this.props.user.watchlist;
-
-    console.log(this.state.movie.name, "movie name movie name");
-    //we need to go thru watchlist and compare each title to current state movie name
-    //if movie name does not equal watch list movie name
-    //are we at the end of the list?
-    //if yes - does not contain movie
-    //else
-    //keep checking
+    console.log("THIS PROPS USER", this.props.user);
 
     let contains = false;
-
-    for (let i = 0; i < x.length; i++) {
-      if (x[i].name === this.state.movie.name) {
+    for (let i = 0; i < this.props.user.watchlist.length; i++) {
+      if (this.props.user.watchlist[i].name === this.state.movie.name) {
         contains = true;
         break;
       }
-      // console.log("USER I GUESS ", x[i].name);
     }
-
     let nav = !contains ? (
       <button
         onClick={() =>
@@ -170,7 +88,7 @@ class Movies extends Component {
             .then(res => {
               let newUser = this.props.user;
               newUser.watchlist = [...newUser.watchlist, res.data.message];
-              console.log(newUser);
+              console.log("DID WE MAKE IT HERE???");
               this.props.handleUpdateUser(newUser);
             })
         }
@@ -194,16 +112,6 @@ class Movies extends Component {
         -{" "}
       </button>
     );
-
-    var y = this.state.streaming;
-    console.log("MOVIE MOVIE MOVIE MOVIE", y);
-
-    //   !this.props.user.watchlist[i].name.includes(this.state.movie)
-    // }!this.props.user.watchlist.name.includes(
-    //   movieService.checkStream.response.data
-    // ) ? (
-
-    //   //BUTTONS!
 
     return (
       <div>

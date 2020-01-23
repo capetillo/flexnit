@@ -4,7 +4,7 @@ var router = express.Router();
 var watchlistsCtrl = require("../../controllers/watchlists");
 
 router.use(require("../../config/auth"));
-router.get("/:user", checkAuth, watchlistsCtrl.listWatchlist);
+router.get("/:user", watchlistsCtrl.listWatchlist);
 router.post("/:user", watchlistsCtrl.addMovie);
 router.delete("/:user/:title", watchlistsCtrl.removeMovie);
 
