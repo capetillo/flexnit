@@ -25,6 +25,7 @@ function removeMovie(req, res) {
     });
     user.watchlist = newWatchlist;
     user.save(function(err) {
+      console.log(req.body);
       if (err) console.log(err);
       res.send({ message: "deleted" });
     });
