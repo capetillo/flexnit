@@ -1,5 +1,6 @@
 import React from "react";
 import movieService from "../../utils/movieService";
+import Movies from "../../components/Movies/Movies";
 
 class Watchlist extends React.Component {
   state = {
@@ -9,8 +10,9 @@ class Watchlist extends React.Component {
   };
 
   saveMovie = () => {
-    this.handleSave();
+    this.handleSaveMovie();
 
+    //FIGURE OUT WHERE TO PASS THIS OMFG
     let watchlistCollection = {
       title: this.props.title,
       movie_id: this.props.id
@@ -21,13 +23,13 @@ class Watchlist extends React.Component {
     movieService.watchlistMovie(this.props.user_id, watchlistCollection);
   };
 
-  deleteMovie = () => {
-    console.log("maybe i deleted the movie, who knows?");
-    movieService.deleteMovie(this.props.user_id, {
-      movie_id: this.props.id
-    });
-    //this.props.updateWatchlist();
-  };
+  // handleDeleteMovie = () => {
+  //   console.log("maybe i deleted the movie, who knows?");
+  //   movieService.deleteMovie(this.props.user_id, {
+  //     movie_id: this.props.id
+  //   });
+  //   this.updateWatchlist();
+  // };
 
   // checkStream = () => {
   //   console.log("check stream");
@@ -56,7 +58,7 @@ class Watchlist extends React.Component {
   //     });
   // };
 
-  handleSave = () => {
+  handleSaveMovie = () => {
     console.log("saved it i guess?");
     this.setState(state => ({ listed: !state.listed }));
   };
@@ -74,12 +76,16 @@ class Watchlist extends React.Component {
   // }
 
   render() {
-    const CheckStreamingButton = () => (
-      <button onClick={this.checkStream}> Search </button>
-    );
-    const stream = this.props.stream;
+    //const stream = this.props.stream;
 
-    return <div></div>;
+    return (
+      <div>
+        <Movies
+          handleSaveMovie={this.handleSaveMovie}
+          handleDeleteMovie={this.handleDeleteMovie}
+        />
+      </div>
+    );
   }
 }
 

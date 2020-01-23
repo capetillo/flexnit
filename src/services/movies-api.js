@@ -1,5 +1,9 @@
-export function getAllMovies(title) {
-  return fetch(
+export default {
+  getAllMovies
+};
+
+async function getAllMovies(title) {
+  const response = await fetch(
     `https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=${title}&country=us`,
     {
       method: "GET",
@@ -9,11 +13,7 @@ export function getAllMovies(title) {
         "x-rapidapi-key": process.env.REACT_APP_API_KEY
       }
     }
-  )
-    .then(response => {
-      console.log("RESPONSE HEADERS", response.json());
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  );
+  const json = await response.json();
+  return json;
 }

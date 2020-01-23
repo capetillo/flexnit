@@ -4,10 +4,10 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
 import HomePage from "../HomePage/HomePage";
-import { getAllMovies } from "../../services/movies-api";
+import movieApi from "../../services/movies-api";
 import SearchPage from "../../pages/SearchPage/SearchPage";
 import WatchListPage from "../WatchListPage/WatchListPage";
-import movieService from "../../utils/movieService";
+//import movieService from "../../utils/movieService";
 
 class App extends Component {
   constructor() {
@@ -19,25 +19,33 @@ class App extends Component {
     };
   }
   //CHECK LATER
-  updateWatchlist = () => {
-    console.log("made it to updatewatchlist");
-    movieService
-      .displayList(this.user.id)
-      .then(res => {
-        console.log(res);
-        return res;
-      })
-      .then(res => this.setState({ moviesArr: res.data.favorite }))
-      .catch(err => console.log(err));
-  };
+  // updateWatchlist = () => {
+  //   console.log("made it to updatewatchlist");
+  //   movieService
+  //     .displayList(this.state.user.id)
+  //     .then(response => {
+  //       console.log(response);
+  //       return response;
+  //     })
+  //     .then(response => this.setState({ moviesArr: response.data.watchlist }))
+  //     .catch(err => console.log(err));
+  // };
+
+  // handleDeleteMovie = () => {
+  //   console.log("maybe i deleted the movie, who knows?");
+  //   movieService.deleteMovie(this.state.user_id, {
+  //     movie_id: this.props.id
+  //   });
+  //   this.updateWatchlist();
+  // };
 
   getMovie = idx => {
     return this.state.moviesArr[idx];
   };
 
-  async componentDidMount() {
-    const movies = await getAllMovies();
-    this.setState({ movies: movies });
+  componentDidMount() {
+    const moviesArr = movieApi.getAllMovies();
+    this.setState(async state => await { ...state, moviesArr: moviesArr });
   }
 
   handleLogout = () => {
@@ -97,18 +105,17 @@ class App extends Component {
             render={() => <SearchPage movies={this.state.searchArr} />}
           />
           <div>
-            {console.log(this.state.movies)}
             {this.state.moviesArr.map(movie => (
               <Route
                 exact
                 path="/watchlist"
                 render={() => (
                   <WatchListPage
+                    user={this.state.user}
                     title={movie.title}
                     summary={movie.summary}
                     id={movie.movie_id}
-                    user_id={this.state.user.id}
-                    updateWatchlist={() => this.updateWatchlist()}
+                    // updateWatchlist={this.updateWatchlist}
                   />
                 )}
               />
