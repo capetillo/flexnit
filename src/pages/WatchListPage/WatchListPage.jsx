@@ -15,7 +15,9 @@ const WatchListPage = props => (
             <img className="img" src={movie.picture} alt=""></img>
             <br />
 
-            <button
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
+              alt="delete"
               className="button"
               onClick={() =>
                 movieService
@@ -26,10 +28,8 @@ const WatchListPage = props => (
                     props.handleUpdateUser(newUser);
                   })
               }
-            >
-              {" "}
-              -{" "}
-            </button>
+            ></img>
+            <p>remove from watchlist</p>
           </div>
         </div>
       </div>

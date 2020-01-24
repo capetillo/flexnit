@@ -1,6 +1,7 @@
 .img {
-  height: 25%;
-  width: 40%;
+  height: 30%;
+  width: 45%;
+  margin-right: 20px;
 }
 
 input {
@@ -19,16 +20,67 @@ button {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-button :hover {
-  background-color: grey;
-}
-
 .inputandbutton {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 .youtube {
   display: flex;
   justify-content: center;
+}
+
+.save {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.delete {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.add {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.remove {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.results {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+}
+
+.info {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+.services {
+  display: flex;
+  flex-flow: column;
+  font-size: 18px;
+  justify-content: center;
+  margin-bottom: -10px;
+}
+
+.title {
+  margin-bottom: -25px;
+  margin-top: -20px;
+}
+.available {
+  font-size: 30px;
+  margin-bottom: -10px;
 }

@@ -2,14 +2,19 @@ a :hover {
   color: rgb(229, 9, 20);
 }
 
-.things {
+.links {
   color: white;
   display: flex;
   justify-content: space-evenly;
   font-size: 45px;
   margin-bottom: 40px;
+  flex-flow: row;
 }
 
-.things :hover {
+.links :hover {
   color: rgb(229, 9, 20);
+}
+
+span :hover {
+  color: white;
 }

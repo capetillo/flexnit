@@ -99,77 +99,83 @@ class Movies extends Component {
       }
     }
     let nav = !contains ? (
-      <button
-        onClick={() =>
-          movieService
-            .addToList(this.props.user._id, this.state.movie)
-            .then(res => {
-              let newUser = this.props.user;
-              newUser.watchlist = [...newUser.watchlist, res.data.message];
-              console.log("DID WE MAKE IT HERE???");
-              this.props.handleUpdateUser(newUser);
-            })
-        }
-      >
-        {" "}
-        +{" "}
-      </button>
+      <div className="add">
+        <img
+          src="https://www.freeiconspng.com/uploads/facebook-circle-heart-love-png-4.png"
+          alt="save"
+          className="save"
+          onClick={() =>
+            movieService
+              .addToList(this.props.user._id, this.state.movie)
+              .then(res => {
+                let newUser = this.props.user;
+                newUser.watchlist = [...newUser.watchlist, res.data.message];
+                this.props.handleUpdateUser(newUser);
+              })
+          }
+        ></img>
+        <p>add to watchlist</p>
+      </div>
     ) : (
-      <button
-        onClick={() =>
-          movieService
-            .deleteFromList(this.props.user._id, this.state.movie.name)
-            .then(res => {
-              console.log("RESSSS ", res);
-              let newUser = res.data;
-              this.props.handleUpdateUser(newUser);
-            })
-        }
-      >
-        {" "}
-        -{" "}
-      </button>
+      <div className="remove">
+        <img
+          src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
+          alt="delete"
+          className="delete"
+          onClick={() =>
+            movieService
+              .deleteFromList(this.props.user._id, this.state.movie.name)
+              .then(res => {
+                console.log("RESSSS ", res);
+                let newUser = res.data;
+                this.props.handleUpdateUser(newUser);
+              })
+          }
+        ></img>
+        <p>remove from watchlist</p>
+      </div>
     );
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <div>
-              <div className="inputandbutton">
-                <input
-                  type="text"
-                  placeholder="Title"
-                  value={this.state.title}
-                  title="title"
-                  onChange={this.handleChange}
-                />
-
-                <CheckStreamingButton />
-              </div>
-              <p>{this.state.movie.name}</p>
-              <p>{this.state.available}</p>
-              {this.state.streaming.map(service => (
-                <a target="blank" href={service.url}>
-                  <p key={service.display_name}>{service.display_name}</p>
-                </a>
-              ))}
-            </div>
-            {this.state.hasSearched ? (
-              <div>
-                <img src={this.state.imgArr} className="img" />
-                {nav}
-              </div>
-            ) : (
-              <div className="youtube">
-                <YouTube
-                  videoId="YgSW4fnmlKs"
-                  opts={this.state.opts}
-                  onReady={this._onReady}
-                />
-              </div>
-            )}
+          <div className="inputandbutton">
+            <input
+              type="text"
+              placeholder="Title"
+              value={this.state.title}
+              title="title"
+              onChange={this.handleChange}
+            />
+            <CheckStreamingButton />
           </div>
+          {this.state.hasSearched ? (
+            <div className="results">
+              <div className="title">
+                <p>{this.state.movie.name}</p>
+              </div>
+              <div className="info">
+                <img src={this.state.imgArr} className="img" />
+                <div className="services">
+                  <p className="available">{this.state.available}</p>
+                  {this.state.streaming.map(service => (
+                    <a target="blank" href={service.url}>
+                      <p key={service.display_name}>{service.display_name}</p>
+                    </a>
+                  ))}
+                  {nav}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="youtube">
+              <YouTube
+                videoId="YgSW4fnmlKs"
+                opts={this.state.opts}
+                onReady={this._onReady}
+              />
+            </div>
+          )}
         </form>
       </div>
     );

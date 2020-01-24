@@ -4,23 +4,23 @@ import "./Nav.css";
 
 const Nav = props => {
   let nav = props.user ? (
-    <div className="things">
+    <div className="links">
       <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Link to="/home" className="NavBar-link">
         HOME
       </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Link to="/watchlist" className="NavBar-link">
         YOUR WATCHLIST
       </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Link to="/home" className="NavBar-link" onClick={props.handleLogout}>
         LOG OUT
       </Link>
     </div>
   ) : (
-    <div className="things">
+    <div className="links">
       <Link to="/login" className="NavBar-link">
         LOG IN
       </Link>
