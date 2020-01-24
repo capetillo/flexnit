@@ -9,6 +9,8 @@ class Movies extends Component {
     movie: {},
     imgArr: [],
     available: "",
+    hasSearched: false,
+    url: []
   };
 
   searchMovie = title => {
@@ -26,25 +28,27 @@ class Movies extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     console.log("a title was submitted " + this.state.title);
+    this.setState({ hasSearched: true });
   };
 
   checkStream = () => {
     console.log("check stream");
     let tempArray = [];
     let imgArray = [];
+    let urlArray = [];
     let obj = { locations: [] };
     movieService
       .checkStream(this.state.title)
       .then(response => {
-        console.log("RESPONSE DATA IS ", response.data);
         if (response.data.length > 0) {
           imgArray.push(response.data[0].picture);
           obj.picture = response.data[0].picture;
           obj.name = response.data[0].name;
-          console.log("TEMP ARRAY", tempArray);
           for (let i = 0; i < response.data[0].locations.length; i++) {
-            tempArray.push(response.data[0].locations[i].display_name);
+            urlArray.push(response.data[0].locations[i].url);
+            tempArray.push(response.data[0].locations[i]);
             obj.locations.push(response.data[0].locations[i].display_name);
+            console.log("URLS", urlArray);
           }
         }
       })
@@ -54,7 +58,8 @@ class Movies extends Component {
             streaming: tempArray,
             imgArr: imgArray,
             available: "Available On: ",
-            movie: obj
+            movie: obj,
+            url: urlArray
           });
         } else {
           this.setState({
@@ -127,15 +132,27 @@ class Movies extends Component {
               />
               <CheckStreamingButton />
               {/* <p>{this.state.title}</p> adds the title simultaneously*/}
+              <p>{this.state.movie.name}</p>
               <p>{this.state.available}</p>
               {this.state.streaming.map(service => (
-                <p key={service}>{service}</p>
+                <a target="blank" href={service.url}>
+                  <p key={service.display_name}>{service.display_name}</p>
+                </a>
               ))}
             </div>
-            <img src={this.state.imgArr} className="img" />
+            {this.state.hasSearched ? (
+              <div>
+                <img src={this.state.imgArr} className="img" />
+                {nav}
+              </div>
+            ) : (
+              <img
+                src="https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
+                alt=""
+              />
+            )}
           </div>
         </form>
-        {nav}
       </div>
     );
   }

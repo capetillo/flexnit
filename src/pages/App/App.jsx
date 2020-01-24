@@ -44,7 +44,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header className="header-footer">F L E X N I T</header>
+        <img
+          className="logo"
+          src="https://fontmeme.com/permalink/200124/089f1009a71e665a1f6aa7b6ebee8f6d.png"
+          alt="netflix-font"
+          border="0"
+        ></img>
         <Switch>
           <Route
             exact

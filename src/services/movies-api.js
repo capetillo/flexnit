@@ -17,3 +17,9 @@ async function getAllMovies(title) {
   const json = await response.json();
   return json;
 }
+
+// function getPopularMovies() {
+//   fetch(
+//     `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=4812dacb2c849b2a2f5670f835ee5e9e`
+//   ).then(res => res.json()).then;
+// }
