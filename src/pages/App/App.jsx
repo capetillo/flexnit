@@ -7,7 +7,7 @@ import HomePage from "../HomePage/HomePage";
 import movieApi from "../../services/movies-api";
 import SearchPage from "../../pages/SearchPage/SearchPage";
 import WatchListPage from "../WatchListPage/WatchListPage";
-import movieService from "../../utils/movieService";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -45,10 +45,9 @@ class App extends Component {
     return (
       <div>
         <img
-          className="logo"
           src="https://fontmeme.com/permalink/200124/089f1009a71e665a1f6aa7b6ebee8f6d.png"
           alt="netflix-font"
-          border="0"
+          className="logo"
         ></img>
         <Switch>
           <Route
@@ -95,10 +94,6 @@ class App extends Component {
                 <WatchListPage
                   user={this.state.user}
                   handleUpdateUser={this.handleUpdateUser}
-                  // title={movie.title}
-                  // summary={movie.summary}
-                  // id={movie.movie_id}
-                  // updateWatchlist={this.updateWatchlist}
                 />
               )}
             />

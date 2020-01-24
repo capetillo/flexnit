@@ -1,0 +1,11 @@
+a :hover {
+  color: blue;
+}
+
+.things {
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 45px;
+  margin-bottom: 40px;
+}

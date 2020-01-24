@@ -62,7 +62,7 @@ class LoginPage extends Component {
             <div className="col-sm-12 text-center">
               <button className="btn btn-default">Log In</button>
               &nbsp;&nbsp;&nbsp;
-              <Link to="/">Cancel</Link>
+              <Link to="/home">Cancel</Link>
             </div>
           </div>
         </form>

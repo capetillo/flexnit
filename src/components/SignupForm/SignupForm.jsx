@@ -102,7 +102,7 @@ class SignupForm extends Component {
                 Sign Up
               </button>
               &nbsp;&nbsp;
-              <Link to="/">Cancel</Link>
+              <Link to="/home">Cancel</Link>
             </div>
           </div>
         </form>

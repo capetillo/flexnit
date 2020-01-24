@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import movieService from "../../utils/movieService";
+import YouTube from "react-youtube";
 import "./Movies.css";
 
 class Movies extends Component {
@@ -10,8 +11,18 @@ class Movies extends Component {
     imgArr: [],
     available: "",
     hasSearched: false,
-    url: []
+    url: [],
+    opts: {
+      height: "390",
+      width: "640",
+      playerVars: "https://www.youtube.com/watch?v=YgSW4fnmlKs"
+    }
   };
+
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.playVideo();
+  }
 
   searchMovie = title => {
     this.setState({ title: title });
@@ -123,15 +134,17 @@ class Movies extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <div>
-              <input
-                type="text"
-                placeholder="Title"
-                value={this.state.title}
-                title="title"
-                onChange={this.handleChange}
-              />
-              <CheckStreamingButton />
-              {/* <p>{this.state.title}</p> adds the title simultaneously*/}
+              <div className="inputandbutton">
+                <input
+                  type="text"
+                  placeholder="Title"
+                  value={this.state.title}
+                  title="title"
+                  onChange={this.handleChange}
+                />
+
+                <CheckStreamingButton />
+              </div>
               <p>{this.state.movie.name}</p>
               <p>{this.state.available}</p>
               {this.state.streaming.map(service => (
@@ -146,10 +159,13 @@ class Movies extends Component {
                 {nav}
               </div>
             ) : (
-              <img
-                src="https://media.giphy.com/media/Ph0oIVQeuvh0k/giphy.gif"
-                alt=""
-              />
+              <div className="youtube">
+                <YouTube
+                  videoId="YgSW4fnmlKs"
+                  opts={this.state.opts}
+                  onReady={this._onReady}
+                />
+              </div>
             )}
           </div>
         </form>

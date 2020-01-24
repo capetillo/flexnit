@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Nav.css";
 
 const Nav = props => {
   let nav = props.user ? (
-    <div>
+    <div className="things">
+      <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link to="/home" className="NavBar-link">
         HOME
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link to="/watchlist" className="NavBar-link">
-        YOUR WATCHLISTS
+        YOUR WATCHLIST
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <Link to="/login" className="NavBar-link" onClick={props.handleLogout}>
+      <Link to="/home" className="NavBar-link" onClick={props.handleLogout}>
         LOG OUT
       </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
     </div>
   ) : (
     <div>

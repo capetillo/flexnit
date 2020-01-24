@@ -2,3 +2,24 @@
   height: 25%;
   width: 40%;
 }
+
+input {
+  color: red;
+  height: 40px;
+  width: 500px;
+  font-size: 25px;
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: lightgrey;
+  border-color: lightgrey;
+  margin-right: 20px;
+}
+
+.inputandbutton {
+  display: flex;
+  justify-content: center;
+}
+
+.youtube {
+  display: flex;
+  justify-content: center;
+}

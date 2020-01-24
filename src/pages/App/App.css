@@ -6,3 +6,11 @@ body {
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
