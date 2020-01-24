@@ -23,6 +23,20 @@ const WatchListPage = props => (
       <div>
         {movie.name}
         <img className="img" src={movie.picture} alt=""></img>
+        <button
+          onClick={() =>
+            movieService
+              .deleteFromList(props.user._id, movie.name)
+              .then(res => {
+                console.log("RESSSS ", res);
+                let newUser = res.data;
+                props.handleUpdateUser(newUser);
+              })
+          }
+        >
+          {" "}
+          -{" "}
+        </button>
       </div>
     ))}
   </div>

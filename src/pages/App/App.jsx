@@ -89,6 +89,7 @@ class App extends Component {
               render={() => (
                 <WatchListPage
                   user={this.state.user}
+                  handleUpdateUser={this.handleUpdateUser}
                   // title={movie.title}
                   // summary={movie.summary}
                   // id={movie.movie_id}
