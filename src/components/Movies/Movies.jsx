@@ -114,7 +114,19 @@ class Movies extends Component {
               })
           }
         ></img>
-        <p>add to watchlist</p>
+        <p
+          onClick={() =>
+            movieService
+              .addToList(this.props.user._id, this.state.movie)
+              .then(res => {
+                let newUser = this.props.user;
+                newUser.watchlist = [...newUser.watchlist, res.data.message];
+                this.props.handleUpdateUser(newUser);
+              })
+          }
+        >
+          add to watchlist
+        </p>
       </div>
     ) : (
       <div className="remove">
@@ -132,7 +144,19 @@ class Movies extends Component {
               })
           }
         ></img>
-        <p>remove from watchlist</p>
+        <p
+          onClick={() =>
+            movieService
+              .deleteFromList(this.props.user._id, this.state.movie.name)
+              .then(res => {
+                console.log("RESSSS ", res);
+                let newUser = res.data;
+                this.props.handleUpdateUser(newUser);
+              })
+          }
+        >
+          remove from watchlist
+        </p>
       </div>
     );
 
@@ -152,18 +176,19 @@ class Movies extends Component {
           {this.state.hasSearched ? (
             <div className="results">
               <div className="title">
-                <p>{this.state.movie.name}</p>
-              </div>
-              <div className="info">
-                <img src={this.state.imgArr} className="img" />
-                <div className="services">
-                  <p className="available">{this.state.available}</p>
-                  {this.state.streaming.map(service => (
-                    <a target="blank" href={service.url}>
-                      <p key={service.display_name}>{service.display_name}</p>
-                    </a>
-                  ))}
-                  {nav}
+                <p className="moviename">{this.state.movie.name}</p>
+                <div className="info">
+                  <img src={this.state.imgArr} className="img" />
+
+                  <div className="services">
+                    <p className="available">{this.state.available}</p>
+                    {this.state.streaming.map(service => (
+                      <a target="blank" href={service.url}>
+                        <p key={service.display_name}>{service.display_name}</p>
+                      </a>
+                    ))}
+                    {nav}
+                  </div>
                 </div>
               </div>
             </div>

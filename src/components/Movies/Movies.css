@@ -5,7 +5,7 @@
 }
 
 input {
-  color: red;
+  color: rgb(229, 9, 20);
   height: 40px;
   width: 500px;
   font-size: 25px;
@@ -23,7 +23,7 @@ button {
 .inputandbutton {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .youtube {
@@ -49,14 +49,35 @@ button {
   display: flex;
   flex-flow: row;
   align-items: center;
+  color: white;
+}
+.add :hover {
+  color: red;
+  cursor: pointer;
 }
 .remove {
   display: flex;
   flex-flow: row;
-  align-items: center;
+  flex-wrap: nowrap;
+  color: white;
+}
+.remove :hover {
+  color: red;
+  cursor: pointer;
 }
 
+.moviename {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px;
+}
 .results {
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+}
+.title {
+  color: white;
   display: flex;
   flex-flow: column;
   align-content: center;
@@ -70,17 +91,14 @@ button {
 }
 .services {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   font-size: 18px;
   justify-content: center;
   margin-bottom: -10px;
 }
 
-.title {
-  margin-bottom: -25px;
-  margin-top: -20px;
-}
 .available {
-  font-size: 30px;
+  font-size: 34px;
   margin-bottom: -10px;
+  margin-top: -10px;
 }

@@ -1,8 +1,3 @@
-.title {
-  font-size: 35px;
-  color: rgb(229, 9, 20);
-  text-align: center;
-}
 h2 {
   text-align: center;
   font-size: 38px;
@@ -16,13 +11,30 @@ h2 {
   color: white;
   cursor: pointer;
 }
-.allofit {
+.results {
   display: flex;
   flex-direction: column;
 }
 
-.imgandbutton {
+.info {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
   justify-content: center;
+  align-items: center;
+}
+.title {
+  color: rgb(229, 9, 20);
+  margin-bottom: -25px;
+  margin-top: -20px;
+}
+.services {
+  display: flex;
+  flex-flow: column;
+  font-size: 18px;
+  justify-content: center;
+  margin-bottom: -10px;
+}
+p {
+  font-size: 30px;
+  margin-bottom: -10px;
 }

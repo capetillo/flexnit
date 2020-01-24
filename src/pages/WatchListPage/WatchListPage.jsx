@@ -8,13 +8,13 @@ const WatchListPage = props => (
     <Nav user={props.user} />
     <h2>Your saved shows and movies</h2>
     {props.user.watchlist.map(movie => (
-      <div>
-        <div className="allofit">
-          <div className="title">{movie.name}</div>
-          <div className="imgandbutton">
-            <img className="img" src={movie.picture} alt=""></img>
-            <br />
-
+      <div className="results">
+        <div className="info">
+          {movie.name}
+          <img className="img" src={movie.picture} alt=""></img>
+          <div className="services">
+            <p>Available on: </p>
+            {movie.locations}
             <img
               src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
               alt="delete"
