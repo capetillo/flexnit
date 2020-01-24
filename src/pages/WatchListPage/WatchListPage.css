@@ -38,8 +38,8 @@ p:hover {
   display: flex;
   flex-flow: column;
   font-size: 18px;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   margin-bottom: -10px;
 }
 p {
@@ -48,5 +48,5 @@ p {
 }
 .results {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
 }

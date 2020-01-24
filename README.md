@@ -1,68 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## F L E X N I T
 
-## Available Scripts
+Flexnit is an application for those of use who are tired of browsing for 20 minutes through Netflix and Hulu looking for a show until we realize that the show is on HBO Go and we're not going to pay \$45 to use it once a month. This app uses the Utelly API, which searches for the platform in which a show or movie is provided. The user can sign up, log in, and log out. The user can save and remove movies/shows to their watchlist as well as access their watchlist.
 
-In the project directory, you can run:
+![](https://imgur.com/wgmZeQH)
+![](https://imgur.com/3gr5YGj)
 
-### `npm start`
+## TECHNOLOGIES USED
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+MongoDB, Express, React.js, Node.js, RapidAPI, and CSS
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## CODE
 
-### `npm test`
+https://capetillo.github.io/flexnit/
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## HEROKU DEPLOYED APP
 
-### `npm run build`
+https://flexnit.herokuapp.com/
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## NEXT STEPS
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Future steps include adding the platforms to your watchlist, implementing The Movie DB API to obtain popular movies and shows and display them in the home page instead of the youtube video, and being able to email the movie or show to a friend through email.js.
