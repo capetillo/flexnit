@@ -10,11 +10,11 @@ const WatchListPage = props => (
     {props.user.watchlist.map(movie => (
       <div className="results">
         <div className="info">
-          {movie.name}
-          <img className="img" src={movie.picture} alt=""></img>
+          <div className="title">
+            {movie.name}
+            <img className="img" src={movie.picture} alt=""></img>
+          </div>
           <div className="services">
-            <p>Available on: </p>
-            {movie.locations}
             <img
               src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/82-512.png"
               alt="delete"

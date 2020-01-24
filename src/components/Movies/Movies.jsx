@@ -73,8 +73,6 @@ class Movies extends Component {
           });
         } else {
           this.setState({
-            imgArr: imgArray,
-            streaming: tempArray,
             available:
               "This isn't currently available on any streaming platform."
           });
@@ -95,6 +93,7 @@ class Movies extends Component {
     for (let i = 0; i < this.props.user.watchlist.length; i++) {
       if (this.props.user.watchlist[i].name === this.state.movie.name) {
         contains = true;
+        this.state.hasSearched = true;
         break;
       }
     }
@@ -179,7 +178,6 @@ class Movies extends Component {
                 <p className="moviename">{this.state.movie.name}</p>
                 <div className="info">
                   <img src={this.state.imgArr} className="img" />
-
                   <div className="services">
                     <p className="available">{this.state.available}</p>
                     {this.state.streaming.map(service => (
