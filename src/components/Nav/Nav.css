@@ -1,5 +1,5 @@
 a :hover {
-  color: blue;
+  color: rgb(229, 9, 20);
 }
 
 .things {
@@ -8,4 +8,8 @@ a :hover {
   justify-content: space-evenly;
   font-size: 45px;
   margin-bottom: 40px;
+}
+
+.things :hover {
+  color: rgb(229, 9, 20);
 }

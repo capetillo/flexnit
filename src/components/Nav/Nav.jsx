@@ -20,7 +20,7 @@ const Nav = props => {
       </Link>
     </div>
   ) : (
-    <div>
+    <div className="things">
       <Link to="/login" className="NavBar-link">
         LOG IN
       </Link>

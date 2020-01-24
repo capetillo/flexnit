@@ -95,14 +95,18 @@ class SignupForm extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button
-                className="btn btn-default"
-                disabled={this.isFormInvalid()}
-              >
-                Sign Up
-              </button>
-              &nbsp;&nbsp;
-              <Link to="/home">Cancel</Link>
+              <div className="signupandcancel">
+                <button
+                  className="btn btn-default"
+                  disabled={this.isFormInvalid()}
+                >
+                  Sign Up
+                </button>
+                &nbsp;&nbsp;
+                <div className="cancel">
+                  <Link to="/home">Cancel</Link>
+                </div>
+              </div>
             </div>
           </div>
         </form>
