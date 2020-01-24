@@ -7,7 +7,7 @@ const Nav = props => {
     <div className="links">
       <span className="NavBar-welcome">WELCOME, {props.user.name}</span>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/home" className="NavBar-link">
+      <Link to="/" className="NavBar-link">
         HOME
       </Link>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -15,7 +15,7 @@ const Nav = props => {
         YOUR WATCHLIST
       </Link>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <Link to="/home" className="NavBar-link" onClick={props.handleLogout}>
+      <Link to="/" className="NavBar-link" onClick={props.handleLogout}>
         LOG OUT
       </Link>
     </div>

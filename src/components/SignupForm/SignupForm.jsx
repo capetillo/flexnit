@@ -25,7 +25,7 @@ class SignupForm extends Component {
       // Let <App> know a user has signed up!
       this.props.handleSignupOrLogin();
       // Successfully signed up - show GamePage
-      this.props.history.push("/home");
+      this.props.history.push("/");
     } catch (err) {
       // Invalid user data (probably duplicate email)
       this.props.updateMessage(err.message);
@@ -104,7 +104,7 @@ class SignupForm extends Component {
                 </button>
                 &nbsp;&nbsp;
                 <div className="cancel">
-                  <Link to="/home">Cancel</Link>
+                  <Link to="/">Cancel</Link>
                 </div>
               </div>
             </div>

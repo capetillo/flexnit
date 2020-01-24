@@ -52,7 +52,7 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/home"
+            path="/"
             render={() => (
               <HomePage
                 user={this.state.user}

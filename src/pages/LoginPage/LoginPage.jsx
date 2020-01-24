@@ -22,7 +22,7 @@ class LoginPage extends Component {
       // Let <App> know a user has signed up!
       this.props.handleSignupOrLogin();
       // Successfully signed up - show GamePage
-      this.props.history.push("/home");
+      this.props.history.push("/");
     } catch (err) {
       // Invalid user data (probably duplicate email)
       alert("Invalid Credentials!");
@@ -64,7 +64,7 @@ class LoginPage extends Component {
                 <button className="btn btn-default">Log In</button>
                 &nbsp;&nbsp;&nbsp;
                 <div className="cancel">
-                  <Link to="/home">Cancel</Link>
+                  <Link to="/">Cancel</Link>
                 </div>
               </div>
             </div>
