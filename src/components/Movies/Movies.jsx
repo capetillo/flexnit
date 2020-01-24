@@ -20,7 +20,6 @@ class Movies extends Component {
   };
 
   _onReady(event) {
-    // access to player in all event handlers via event.target
     event.target.playVideo();
   }
 
@@ -85,7 +84,10 @@ class Movies extends Component {
 
   render() {
     const CheckStreamingButton = () => (
-      <button onClick={this.checkStream}> Search </button>
+      <button onClick={this.checkStream} disabled={this.state.title === ""}>
+        {" "}
+        Search{" "}
+      </button>
     );
     console.log("THIS PROPS USER", this.props.user);
 
