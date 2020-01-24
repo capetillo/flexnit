@@ -8,6 +8,10 @@ const Nav = props => {
         HOME
       </Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <Link to="/watchlist" className="NavBar-link">
+        YOUR WATCHLISTS
+      </Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <Link to="" className="NavBar-link" onClick={props.handleLogout}>
         LOG OUT
       </Link>

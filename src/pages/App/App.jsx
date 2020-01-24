@@ -7,7 +7,7 @@ import HomePage from "../HomePage/HomePage";
 import movieApi from "../../services/movies-api";
 import SearchPage from "../../pages/SearchPage/SearchPage";
 import WatchListPage from "../WatchListPage/WatchListPage";
-//import movieService from "../../utils/movieService";
+import movieService from "../../utils/movieService";
 
 class App extends Component {
   constructor() {
@@ -18,27 +18,6 @@ class App extends Component {
       searchArr: []
     };
   }
-
-  //CHECK LATER
-  // updateWatchlist = () => {
-  //   console.log("made it to updatewatchlist");
-  //   movieService
-  //     .displayList(this.state.user.id)
-  //     .then(response => {
-  //       console.log(response);
-  //       return response;
-  //     })
-  //     .then(response => this.setState({ moviesArr: response.data.watchlist }))
-  //     .catch(err => console.log(err));
-  // };
-
-  // handleDeleteMovie = () => {
-  //   console.log("maybe i deleted the movie, who knows?");
-  //   movieService.deleteMovie(this.state.user_id, {
-  //     movie_id: this.props.id
-  //   });
-  //   this.updateWatchlist();
-  // };
 
   getMovie = idx => {
     return this.state.moviesArr[idx];
@@ -104,21 +83,19 @@ class App extends Component {
             render={() => <SearchPage movies={this.state.searchArr} />}
           />
           <div>
-            {this.state.moviesArr.map(movie => (
-              <Route
-                exact
-                path="/watchlist"
-                render={() => (
-                  <WatchListPage
-                    user={this.state.user}
-                    title={movie.title}
-                    summary={movie.summary}
-                    id={movie.movie_id}
-                    // updateWatchlist={this.updateWatchlist}
-                  />
-                )}
-              />
-            ))}
+            <Route
+              exact
+              path="/watchlist"
+              render={() => (
+                <WatchListPage
+                  user={this.state.user}
+                  // title={movie.title}
+                  // summary={movie.summary}
+                  // id={movie.movie_id}
+                  // updateWatchlist={this.updateWatchlist}
+                />
+              )}
+            />
           </div>
         </Switch>
       </div>
