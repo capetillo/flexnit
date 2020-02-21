@@ -14,7 +14,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Bangers", cursive;
+  font-family: "Anton";
+  letter-spacing: 1px;
   color: white;
 }
 
